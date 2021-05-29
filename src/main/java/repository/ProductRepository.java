@@ -1,6 +1,7 @@
 package repository;
 
 import domain.Product;
+import exception.NotFoundException;
 
 public class ProductRepository {
     private Product[] products = new Product[0];
@@ -20,7 +21,19 @@ public class ProductRepository {
         return products;
     }
 
+    public Product findById(int id) {
+        for (Product product : products) {
+            if ((product.getId() == id))
+                return product;
+        }
+        return null;
+    }
+
     public void removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("product with id=" + id + " not found");
+        }
+
         if (products.length == 0) {
             return;
         }
