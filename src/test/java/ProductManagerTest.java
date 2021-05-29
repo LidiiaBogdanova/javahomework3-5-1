@@ -13,14 +13,17 @@ public class ProductManagerTest {
     @Test
     public void IfArrayNothing() {
         Product[] products = manager.searchBy("Pupkin");
-        assertEquals(0, products.length);
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, products);
     }
+
     @Test
     public void IfArrayWithoutCorrectTypes() {
-        Product product=new Product();
+        Product product = new Product();
         manager.add(product);
         Product[] products = manager.searchBy("Pupkin");
-        assertEquals(0, products.length);
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, products);
     }
 
     @Test
@@ -28,75 +31,89 @@ public class ProductManagerTest {
         Book book1 = new Book(1, "Kolobok", 100, "Pupkin");
         manager.add(book1);
         Product[] products = manager.searchBy("Pupkin");
-        assertEquals(1, products.length);
-        assertSame(book1, products[0]);
+        Product[] expected = new Product[]{book1};
+        assertArrayEquals(expected, products);
 
     }
+
     @Test
     public void IfArrayWithOneBookIncorrectSearch() {
         Book book1 = new Book(1, "Kolobok", 100, "Pupkin");
         manager.add(book1);
         Product[] products = manager.searchBy("Pushkin");
-        assertEquals(0, products.length);
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, products);
     }
+
     @Test
     public void IfArrayWithOneSmartphoneCorrectSearchName() {
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
         Product[] products = manager.searchBy("Iphone");
-        assertEquals(1, products.length);
-        assertSame(smartphone, products[0]);
+        Product[] expected = new Product[]{smartphone};
+        assertArrayEquals(expected, products);
     }
+
     @Test
     public void IfArrayWithOneSmartphoneInCorrectSearchName() {
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
         Product[] products = manager.searchBy("Samsung");
-        assertEquals(0, products.length);
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, products);
     }
+
     @Test
     public void IfArrayWithOneSmartphoneCorrectSearchProducer() {
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
         Product[] products = manager.searchBy("Apple");
-        assertEquals(1, products.length);
-        assertSame(smartphone, products[0]);
+        Product[] expected = new Product[]{smartphone};
+        assertArrayEquals(expected, products);
     }
+
     @Test
-    public void IfArrayMixedDifferentNamesCorrectSearch(){
+    public void IfArrayMixedDifferentNamesCorrectSearch() {
         Book book1 = new Book(1, "Kolobok", 100, "Pupkin");
         manager.add(book1);
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
-        Product[] products= manager.searchBy("Pupkin");
-        assertEquals(1, products.length);
+        Product[] products = manager.searchBy("Pupkin");
+        Product[] expected = new Product[]{book1};
+        assertArrayEquals(expected, products);
     }
+
     @Test
-    public void IfArrayMixedDifferentNamesInCorrectSearch(){
+    public void IfArrayMixedDifferentNamesInCorrectSearch() {
         Book book1 = new Book(1, "Kolobok", 100, "Pupkin");
         manager.add(book1);
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
-        Product[] products= manager.searchBy("Pushkin");
-        assertEquals(0, products.length);
+        Product[] products = manager.searchBy("Pushkin");
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, products);
     }
+
     @Test
-    public void IfArrayMixedSameNamesCorrectSearch(){
+    public void IfArrayMixedSameNamesCorrectSearch() {
         Book book1 = new Book(1, "Iphone11", 100, "Pupkin");
         manager.add(book1);
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
-        Product[] products= manager.searchBy("Iphone11");
-        assertEquals(2, products.length);
+        Product[] products = manager.searchBy("Iphone11");
+        Product[] expected = new Product[]{book1, smartphone};
+        assertArrayEquals(expected, products);
     }
+
     @Test
-    public void IfArrayMixedSameNamesInCorrectSearch(){
+    public void IfArrayMixedSameNamesInCorrectSearch() {
         Book book1 = new Book(1, "Kolobok", 100, "Pupkin");
         manager.add(book1);
-        Smartphone smartphone=new Smartphone(1,"Iphone11", 100500,"Apple");
+        Smartphone smartphone = new Smartphone(1, "Iphone11", 100500, "Apple");
         manager.add(smartphone);
-        Product[] products= manager.searchBy("Samsung");
-        assertEquals(0, products.length);
+        Product[] products = manager.searchBy("Samsung");
+        Product[] expected = new Product[0];
+        assertArrayEquals(expected, products);
     }
 
 
